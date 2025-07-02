@@ -1,51 +1,19 @@
+// 👉 Función para mostrar secciones
 function showSection(id) {
   document.querySelectorAll("main section").forEach(sec => sec.classList.add("oculto"));
   document.getElementById(id).classList.remove("oculto");
-}
 
-// 👉 Establecer la fecha actual al abrir la página
-const fechaInput = document.getElementById("fecha");
-const today = new Date().toISOString().split("T")[0];
-fechaInput.value = today;
-
-const form = document.getElementById("daily-form");
-
-// Cargar valores si existen para la fecha seleccionada
-function cargarDatos(dia) {
-  const datosGuardados = JSON.parse(localStorage.getItem(`registro-${dia}`));
-  if (datosGuardados) {
-    form.alimentacion.value = datosGuardados.alimentacion;
-    form.deporte.value = datosGuardados.deporte;
-    form.estudio.value = datosGuardados.estudio;
-    form.emocional.value = datosGuardados.emocional;
-  } else {
-    form.reset();
+  // Si entramos en "evaluacion", recargar categorías
+  if (id === "evaluacion") {
+    const fecha = document.getElementById("fecha-evaluacion").value;
+    renderCategoriasEvaluacion(fecha);
   }
 }
 
-cargarDatos(today); // Carga inicial
+// 👉 Fecha actual
+const today = new Date().toISOString().split("T")[0];
 
-// Cuando cambia la fecha → cargar datos si existen
-fechaInput.addEventListener("change", () => {
-  cargarDatos(fechaInput.value);
-});
-
-// Guardar datos al enviar
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const dia = fechaInput.value;
-  const data = {
-    alimentacion: parseInt(form.alimentacion.value),
-    deporte: parseInt(form.deporte.value),
-    estudio: parseInt(form.estudio.value),
-    emocional: parseInt(form.emocional.value)
-  };
-
-  localStorage.setItem(`registro-${dia}`, JSON.stringify(data));
-  alert(`¡Registro para el ${dia} guardado!`);
-});
-
+// 👉 Lista de capacidades a evaluar
 const capacidades = [
   {
     id: "salud",
@@ -79,19 +47,18 @@ const capacidades = [
   }
 ];
 
-// Opciones de mejora
+// Opciones de evaluación
 const opciones = [
   { valor: 1, texto: "No he mejorado" },
   { valor: 2, texto: "He mejorado un poco" },
   { valor: 3, texto: "He mejorado bastante" }
 ];
 
-// Mostrar capacidades con selectores
+// 👉 Renderizar categorías de evaluación
 function renderCategoriasEvaluacion(fecha) {
   const contenedor = document.getElementById("categorias-contenedor");
-  contenedor.innerHTML = ""; // Limpiar antes
+  contenedor.innerHTML = "";
 
-  // Cargar si hay datos guardados
   const datos = JSON.parse(localStorage.getItem(`evaluacion-${fecha}`)) || {};
 
   capacidades.forEach(cap => {
@@ -131,14 +98,16 @@ function renderCategoriasEvaluacion(fecha) {
   });
 }
 
-// Al cambiar fecha → actualizar evaluaciones
+// 👉 Al cambiar la fecha en evaluación, volver a cargar datos
 const inputFechaEval = document.getElementById("fecha-evaluacion");
-inputFechaEval.value = today;
-inputFechaEval.addEventListener("change", () => {
-  renderCategoriasEvaluacion(inputFechaEval.value);
-});
+if (inputFechaEval) {
+  inputFechaEval.value = today;
+  inputFechaEval.addEventListener("change", () => {
+    renderCategoriasEvaluacion(inputFechaEval.value);
+  });
+}
 
-// Inicializar si se muestra la sección
+// 👉 Al cargar la página, si estamos en evaluación, mostrar contenido
 if (document.getElementById("evaluacion")) {
   renderCategoriasEvaluacion(today);
 }

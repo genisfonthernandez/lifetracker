@@ -14,37 +14,16 @@
       <h1>LifeTracker </h1>
     </div>
     <nav>
-      <button onclick="showSection('registro')">📝 Registro</button>
+      <button onclick="showSection('evaluacion')">🧠 Evaluación</button>
       <button onclick="showSection('estadisticas')">📊 Estadísticas</button>
       <button onclick="showSection('objetivos')">🎯 Objetivos</button>
       <button onclick="showSection('calendario')">📅 Calendario</button>
     </nav>
+
   </header>
 
 
   <main>
-    <!-- 📝 Sección: Registro -->
-    <section id="registro">
-      <h2>Registro Diario</h2>
-      <form id="daily-form">
-        <label>Selecciona una fecha:
-          <input type="date" id="fecha" />
-        </label>
-        <label>Alimentación (1–10):
-          <input type="number" name="alimentacion" min="1" max="10" required>
-        </label><br>
-        <label>Deporte (1–10):
-          <input type="number" name="deporte" min="1" max="10" required>
-        </label><br>
-        <label>Estudio/Trabajo (1–10):
-          <input type="number" name="estudio" min="1" max="10" required>
-        </label><br>
-        <label>Estado emocional (1–10):
-          <input type="number" name="emocional" min="1" max="10" required>
-        </label><br>
-        <button type="submit">Guardar</button>
-      </form>
-    </section>
     <section id="evaluacion" class="oculto">
       <div class="evaluacion-header">
         <h2>Evaluación diaria</h2>
