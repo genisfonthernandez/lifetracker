@@ -8,8 +8,11 @@
 </head>
 <body>
 
-  <header>
-    <h1>LifeTracker 🌱</h1>
+  <header class="app-header">
+    <div class="logo-titulo">
+      <img src="https://img.icons8.com/ios-filled/50/90caf9/line-chart.png" alt="logo" class="logo" />
+      <h1>LifeTracker </h1>
+    </div>
     <nav>
       <button onclick="showSection('registro')">📝 Registro</button>
       <button onclick="showSection('estadisticas')">📊 Estadísticas</button>
@@ -17,6 +20,7 @@
       <button onclick="showSection('calendario')">📅 Calendario</button>
     </nav>
   </header>
+
 
   <main>
     <!-- 📝 Sección: Registro -->
@@ -41,6 +45,22 @@
         <button type="submit">Guardar</button>
       </form>
     </section>
+    <section id="evaluacion" class="oculto">
+      <div class="evaluacion-header">
+        <h2>Evaluación diaria</h2>
+        <input type="date" id="fecha-evaluacion" />
+      </div>
+
+      <p class="disclaimer">
+        Es completamente normal no avanzar en todos los aspectos cada día.  
+        <strong>“Avanzar un poco”</strong> significa dedicar tiempo real, reflexionar, o mejorar algo aunque sea pequeño.  
+        <strong>“Avanzar bastante”</strong> implica un cambio relevante, una mejora significativa o un esfuerzo excepcional.  
+        Estas situaciones no son comunes, y deben valorarse como lo que son: progresos importantes.
+      </p>
+
+      <div id="categorias-contenedor"></div>
+    </section>
+
 
     <!-- 📊 Sección: Estadísticas -->
     <section id="estadisticas" class="oculto">
