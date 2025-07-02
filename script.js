@@ -1,23 +1,47 @@
 function showSection(id) {
-  // Oculta todas las secciones
   document.querySelectorAll("main section").forEach(sec => sec.classList.add("oculto"));
-  // Muestra solo la que tiene el ID correspondiente
   document.getElementById(id).classList.remove("oculto");
 }
 
-document.getElementById("daily-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+// 👉 Establecer la fecha actual al abrir la página
+const fechaInput = document.getElementById("fecha");
+const today = new Date().toISOString().split("T")[0];
+fechaInput.value = today;
 
+const form = document.getElementById("daily-form");
+
+// Cargar valores si existen para la fecha seleccionada
+function cargarDatos(dia) {
+  const datosGuardados = JSON.parse(localStorage.getItem(`registro-${dia}`));
+  if (datosGuardados) {
+    form.alimentacion.value = datosGuardados.alimentacion;
+    form.deporte.value = datosGuardados.deporte;
+    form.estudio.value = datosGuardados.estudio;
+    form.emocional.value = datosGuardados.emocional;
+  } else {
+    form.reset();
+  }
+}
+
+cargarDatos(today); // Carga inicial
+
+// Cuando cambia la fecha → cargar datos si existen
+fechaInput.addEventListener("change", () => {
+  cargarDatos(fechaInput.value);
+});
+
+// Guardar datos al enviar
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const dia = fechaInput.value;
   const data = {
-    alimentacion: parseInt(formData.get("alimentacion")),
-    deporte: parseInt(formData.get("deporte")),
-    estudio: parseInt(formData.get("estudio")),
-    emocional: parseInt(formData.get("emocional"))
+    alimentacion: parseInt(form.alimentacion.value),
+    deporte: parseInt(form.deporte.value),
+    estudio: parseInt(form.estudio.value),
+    emocional: parseInt(form.emocional.value)
   };
 
-  localStorage.setItem(`registro-${today}`, JSON.stringify(data));
-  alert("¡Registro guardado!");
-  e.target.reset();
+  localStorage.setItem(`registro-${dia}`, JSON.stringify(data));
+  alert(`¡Registro para el ${dia} guardado!`);
 });

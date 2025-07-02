@@ -1,18 +1,52 @@
+/* 🌙 Estilo oscuro con toques azulados */
 body {
-  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
   margin: 2rem;
 }
 
-header nav button {
-  margin-right: 1rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+h1, h2 {
+  color: #ffffff;
+  border-bottom: 1px solid #1e1e1e;
+  padding-bottom: 0.5rem;
 }
 
-section {
-  margin-top: 2rem;
+nav button {
+  background: transparent;
+  color: #90caf9;
+  border: 1px solid #90caf9;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+nav button:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+input, button {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #2d7dd2;
+  padding: 0.4rem;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+label {
+  margin-bottom: 1rem;
 }
 
 .oculto {
   display: none;
+}
+
+section {
+  margin-top: 2rem;
 }
