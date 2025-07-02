@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LifeTracker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>LifeTracker - Mi Registro Diario</h1>
 
-  <form id="daily-form">
-    <label>¿Cómo estuvo tu alimentación hoy? (1-10)
-      <input type="number" name="alimentacion" min="1" max="10" required>
-    </label><br>
+  <header>
+    <h1>LifeTracker 🌱</h1>
+    <nav>
+      <button onclick="showSection('registro')">📝 Registro</button>
+      <button onclick="showSection('estadisticas')">📊 Estadísticas</button>
+      <button onclick="showSection('objetivos')">🎯 Objetivos</button>
+      <button onclick="showSection('calendario')">📅 Calendario</button>
+    </nav>
+  </header>
 
-    <label>¿Hiciste deporte? (1-10)
-      <input type="number" name="deporte" min="1" max="10" required>
-    </label><br>
+  <main>
+    <!-- 📝 Sección: Registro -->
+    <section id="registro">
+      <h2>Registro Diario</h2>
+      <form id="daily-form">
+        <label>Alimentación (1–10):
+          <input type="number" name="alimentacion" min="1" max="10" required>
+        </label><br>
+        <label>Deporte (1–10):
+          <input type="number" name="deporte" min="1" max="10" required>
+        </label><br>
+        <label>Estudio/Trabajo (1–10):
+          <input type="number" name="estudio" min="1" max="10" required>
+        </label><br>
+        <label>Estado emocional (1–10):
+          <input type="number" name="emocional" min="1" max="10" required>
+        </label><br>
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
 
-    <label>¿Estudiaste o trabajaste bien? (1-10)
-      <input type="number" name="estudio" min="1" max="10" required>
-    </label><br>
+    <!-- 📊 Sección: Estadísticas -->
+    <section id="estadisticas" class="oculto">
+      <h2>Estadísticas</h2>
+      <p>Pronto aquí verás tus gráficas de evolución.</p>
+    </section>
 
-    <label>¿Cómo te sentiste hoy? (1-10)
-      <input type="number" name="emocional" min="1" max="10" required>
-    </label><br>
+    <!-- 🎯 Sección: Objetivos -->
+    <section id="objetivos" class="oculto">
+      <h2>Objetivos</h2>
+      <p>Aquí podrás definir tus metas y ver tu progreso.</p>
+    </section>
 
-    <button type="submit">Guardar</button>
-  </form>
+    <!-- 📅 Sección: Calendario -->
+    <section id="calendario" class="oculto">
+      <h2>Calendario</h2>
+      <p>Aquí verás tu progreso día a día en un calendario.</p>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>

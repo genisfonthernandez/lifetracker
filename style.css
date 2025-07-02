@@ -1,8 +1,18 @@
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   margin: 2rem;
 }
-label {
-  display: block;
-  margin: 1rem 0;
+
+header nav button {
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+section {
+  margin-top: 2rem;
+}
+
+.oculto {
+  display: none;
 }
